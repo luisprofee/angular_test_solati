@@ -1,0 +1,114 @@
+<h4>Formularios <small> tipo </small></h4>
+<hr>
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+  <div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombres</label>
+      <div class="col-8">
+
+        <input class="form-control"
+               type="text"
+               placeholder="Nombre"
+               formControlName="nombres"
+               [class.is-invalid]="nombreNoValido">
+               <small *ngIf="nombreNoValido" class="text-danger">
+                 ingrese por lo menos 5 letras
+               </small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Apellidos</label>
+      <div class="col-8">
+
+        <input class="form-control"
+               type="text"
+               placeholder="Apellido"
+               formControlName="apellidos"
+               [class.is-invalid]="apellidoNoValido">
+               <small *ngIf="apellidoNoValido" class="text-danger">
+                 ingrese por lo menos 5 letras
+               </small>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Cedula</label>
+    <div class="col-8">
+
+      <input class="form-control"
+             type="number"
+             placeholder="Cedula"
+             formControlName="cedula"
+             [class.is-invalid]="cedulaNoValido">
+               <small *ngIf="cedulaNoValido" class="text-danger">
+                 ingrese por lo menos 5 números
+               </small>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-8">
+
+      <input class="form-control"
+             type="email"
+             placeholder="Correo electrónico"
+             formControlName="correo"
+             [class.is-invalid]="correoNoValido">
+               <small *ngIf="correoNoValido" class="text-danger">
+                 Debe ingresar un correo valido
+               </small>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Telefono</label>
+    <div class="col-8">
+
+      <input class="form-control"
+             type="number"
+             placeholder="Telefono"
+             formControlName="telefono"
+             [class.is-invalid]="telefonoNoValido">
+               <small *ngIf="telefonoNoValido" class="text-danger">
+                 ingrese un telefono valido
+               </small>
+    </div>
+  </div>
+
+
+
+  <div class="form-group row" *ngIf="estado">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary btn-block">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+  
+
+</form>
+
+<div class="form-group row" *ngIf="!estado">
+  <label class="col-2 col-form-label">&nbsp;</label>
+  <div class="input-group col-md-8">
+    <a (click)="actualizarUsuario()" class="btn btn-outline-primary btn-block">
+      Actualizar
+    </a>
+  </div>
+
+  <label class="col-2 col-form-label">&nbsp;</label>
+  <div class="input-group col-md-8">
+    <a (click)="limpiarFormulario()" class="btn btn-outline-primary btn-block">
+      Cancelar
+    </a>
+  </div>
+</div>
+<app-usuarios (editar)="editarUsuario($event)"></app-usuarios>
